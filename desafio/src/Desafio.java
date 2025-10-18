@@ -1,8 +1,11 @@
+import java.util.Scanner;
+
 public class Desafio {
     public static void main(String[] args) {
         String nome = "Daniel Magalhães";
         String tipoConta = "Corrente";
         double saldo = 1599.99;
+        int opcao = 0;
 
         System.out.println("");
         System.out.println("********************************************");
@@ -12,17 +15,42 @@ public class Desafio {
         System.out.println("Tipo de Conta: " + tipoConta);
         System.out.println("Saldo Inicial: " + saldo);
         System.out.println("\n********************************************");
-        System.out.println("");
-        System.out.println("");
-        System.out.println("Operações");
-        System.out.println("");
-        System.out.println("1 - Consultar Saldos");
-        System.out.println("2 - Recebar Valor");
-        System.out.println("3 - Transferir Valor");
-        System.out.println("4 - Sair");
 
+        System.out.println("");
+        String menu = """
+                
+                ** Digite sua Opção **
+                1 - Consultar Saldos
+                2 - Transferir Valor
+                3 - Receber Valor
+                4 - Sair
+                """;
 
+        Scanner leitura = new Scanner(System.in);
 
+        while(opcao != 4) {
+            System.out.println(menu);
+            opcao = leitura.nextInt();
+
+            if (opcao == 1) {
+                System.out.println("O saldo atualizado é " + saldo);
+            } else if (opcao == 2) {
+                System.out.println("Qual o valor que deseja transferir?");
+                double valor = leitura.nextDouble();
+                if (valor > saldo) {
+                    System.out.println("Não há saldo para realizar a transferência.");
+                } else {
+                    saldo -= valor;
+                    System.out.println("Novo saldo: " + saldo);
+                }
+            }  else if (opcao == 3) {
+                System.out.println("Valor recebido: ");
+                double valor = leitura.nextDouble();
+                saldo += valor;
+                System.out.println("Novo saldo: " + saldo);
+            }  else if (opcao != 4) {
+                System.out.println("Opção inválida!");
+            }
+        }
     }
 }
-
